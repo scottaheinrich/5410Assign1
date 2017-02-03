@@ -10,23 +10,28 @@ function gameLoop(args){
   var interval = args[1];
   var times = args[2];
   var prevTime = Date.now();
+  args.push(prevTime)
 
 
-  document.getElementById("output").innerHTML += name + "<br/>";
-  document.getElementById("output").innerHTML += interval + "<br/>";
-  document.getElementById("output").innerHTML += times + "<br/>";
-  document.getElementById("output").innerHTML += prevTime + "<br/>";
 
+
+  render(args);
+}
+
+function update(){
 
 }
 
-function update(variable){
+function render(args){
+  var out = document.getElementById("output");
+  var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
 
+  document.getElementById("output").innerHTML += args[0] + "<br/>";
+  document.getElementById("output").innerHTML += args[1] + "<br/>";
+  document.getElementById("output").innerHTML += args[2] + "<br/>";
+  document.getElementById("output").innerHTML += args[3] + "<br/>";
 
-
-}
-
-function render(variable){
-  var output = document.getElementById("output");
-  output.value += variable;
+  if(isScrolledToBottom){
+    out.scrollTop = out.scrollHeight - out.clientHeight;
+  }
 }
