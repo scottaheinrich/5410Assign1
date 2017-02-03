@@ -2,6 +2,9 @@
   background-color: #C2E0FF;
   text-align: center;
 }
+#page{
+  width:50%;
+}
 
 .left{
   width: calc(75% - 2px);
