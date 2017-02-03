@@ -1,3 +1,7 @@
+var prevTime = Date.now();
+var first = 1;
+
+
 document.getElementById("addEvent").onclick = function(){
   //document.getElementById("output").innerHTML += 'Hey'+"<br/>";
   var args = [document.getElementById("name").value,document.getElementById("interval").value,document.getElementById("times").value];
@@ -6,19 +10,25 @@ document.getElementById("addEvent").onclick = function(){
 };
 
 function gameLoop(args){
+  var currTime = Date.now();
+  if(first == 1)
+  {
+    document.getElementById("output").innerHTML += (currTime - prevTime) + "<br/>";
+  }
+
   var name = args[0];
   var interval = args[1];
   var times = args[2];
-  var prevTime = Date.now();
-  args.push(prevTime)
+  args.push(currTime)
 
 
 
-
-  render(args);
+  //first = 0;
+  //render(args);
 }
 
-function update(){
+function update(elapsedTime){
+
 
 }
 
@@ -26,9 +36,7 @@ function render(args){
   var out = document.getElementById("output");
   var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
 
-  document.getElementById("output").innerHTML += args[0] + "<br/>";
-  document.getElementById("output").innerHTML += args[1] + "<br/>";
-  document.getElementById("output").innerHTML += args[2] + "<br/>";
+  //Output goes here
   document.getElementById("output").innerHTML += args[3] + "<br/>";
 
   if(isScrolledToBottom){
