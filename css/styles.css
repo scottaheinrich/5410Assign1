@@ -3,11 +3,11 @@
   text-align: center;
 }
 #page{
-  width:50%;
+  width:75%;
 }
 
 .left{
-  width: calc(75% - 2px);
+  width: calc(50% - 2px);
   height: 200px;
   border: solid black 1px;
   float: left;
@@ -21,16 +21,37 @@
 }
 
 .right{
-  width: calc(25% - 2px);
+  width: calc(50% - 2px);
   height: 200px;
   border: solid black 1px;
   float: left;
+    position: relative;
 }
 .right > div{
-  float:left;
+  display:inline-block;
+  float: left;
+  padding-top: 5px;
+  text-align: center;
+  width: 50%;
+  position: relative;
 }
 .right > input{
-  float:right;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  display:inline-block;
+  vertical-align:middle;
+  margin-left:20px;
+  width: 80%;
+  position: relative;
+}
+.right > button{
+  margin-top: 10px;
+  margin-bottom: 5px;
+  display:inline-block;
+  vertical-align:middle;
+  margin-left:20px;
+  width: 50%;
+  height: auto;
 }
 
 #footer{

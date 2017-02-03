@@ -1,45 +1,64 @@
-var prevTime = Date.now();
-var first = 1;
-
+var currTime, prevTime = performance.now();
+var delta = 0;
+var eventMap = {};
+var args = [];
+var count = 0;
 
 document.getElementById("addEvent").onclick = function(){
-  //document.getElementById("output").innerHTML += 'Hey'+"<br/>";
-  var args = [document.getElementById("name").value,document.getElementById("interval").value,document.getElementById("times").value];
-  var time = Date.now();
-  gameLoop(args);
+  //Get arguments from input fields on button click
+  if(document.getElementById("name").value && document.getElementById("interval").value && document.getElementById("times").value){
+    args = [ document.getElementById("name").value, document.getElementById("interval").value, document.getElementById("times").value ];
+  }
 };
 
-function gameLoop(args){
-  var currTime = Date.now();
-  if(first == 1)
-  {
-    document.getElementById("output").innerHTML += (currTime - prevTime) + "<br/>";
+function gameLoop(){
+  var currTime = performance.now();
+
+  delta = delta + Math.min(1, (currTime - prevTime) / 1);
+  while(delta > .1){
+    delta = delta - .1;
+    update(delta);
+
   }
 
-  var name = args[0];
-  var interval = args[1];
-  var times = args[2];
-  args.push(currTime)
-
-
-
-  //first = 0;
-  //render(args);
+  //clear array for next button push
+  args = [];
+  prevTime = performance.now();
+  requestAnimationFrame(gameLoop);
 }
 
-function update(elapsedTime){
-
+function update(delta){
+  count += 1;
+  if(count == 10001){
+    count = 0;
+  }
+  if(typeof args[0] !== 'undefined'){
+    eventMap[args[0]] = [args[1],args[2]];
+  }
+  Object.keys(eventMap).forEach(function(key) {
+    if(count == eventMap[key][0] && eventMap[key][1] > 0){
+        console.log(count)
+        eventMap[key][1]--;
+        render();
+      }
+    if(eventMap[key][1] == 0){
+        delete eventMap[key];
+    }
+  });
 
 }
 
-function render(args){
+function render(){
   var out = document.getElementById("output");
   var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
 
-  //Output goes here
-  document.getElementById("output").innerHTML += args[3] + "<br/>";
+  Object.keys(eventMap).forEach(function(key) {
+    document.getElementById("output").innerHTML += 'Event: ' + key + ' (' + eventMap[key] + ' remaining)' + '<br/>';
+  });
 
   if(isScrolledToBottom){
     out.scrollTop = out.scrollHeight - out.clientHeight;
   }
 }
+
+requestAnimationFrame(gameLoop);
