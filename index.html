@@ -1,39 +1,36 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Game Loop</title>
-        <link rel="stylesheet" href="css/styles.css">
+<!DOCTYPE HTML>
+<html lang = "en-US">
+<head>
+	<meta charset = "UTF-8">
+	<title>Gameloop</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="./js/loop.js" defer></script>
+</head>
 
-  </head>
-  <body>
-    <div class="panel">
-      Output
-    </div>
-    <div class="panel">
-      <table border="1"  align="center" class="logintable">
-        <tr>
-          <td>
-            <div style="float:left"> Login:<input type="text" name="login" style="float:right;"></div>
+<body>
+	<div style = "width: 50%;">
+		<div id="header">
+			<span>Browser GameLoop</span>
+		</div>
 
-          </td>
-          <tr>
-            <td>
-              <div style="float:left">Password:</div>
-              <input type="text" name="password" style="float:right;">
-            </td>
-          </tr>
-          <td>
-            <input value="Login!" type="submit">
-          </td>
-        </tr>
-      </table>
+		<div class="left">
+      <div id="output"></div>
+		</div>
+		<div class="right">
+			<div>Name:</div>
+      <input type="text" name="name">
+      <div>Interval:</div>
+      <input type="text" name="interval">
+      <div># Times:</div>
+      <input type="text" name="times">
+      <button id="addEvent">Add Event</button>
+		</div>
 
-      <form name="create-event">
+		<div id="footer">
+			<span>Created for CS 5410</span>
+		</div>
 
-      </form>
-    </div>
+	</div>
 
-    <script src="js/loop.js"></script>
-  </body>
+</body>
 </html>

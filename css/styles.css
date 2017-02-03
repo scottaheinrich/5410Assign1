@@ -1,0 +1,36 @@
+#header{
+  background-color: #C2E0FF;
+  text-align: center;
+}
+
+.left{
+  width: calc(75% - 2px);
+  height: 200px;
+  border: solid black 1px;
+  float: left;
+}
+
+#output{
+  height: 97%;
+  width: 99%;
+  overflow:auto;
+}
+
+.right{
+  width: calc(25% - 2px);
+  height: 200px;
+  border: solid black 1px;
+  float: left;
+}
+.right > div{
+  float:left;
+}
+.right > input{
+  float:right;
+}
+
+#footer{
+  clear: both;
+  background-color: #C2E0FF;
+  text-align: center;
+}
